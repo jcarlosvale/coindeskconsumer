@@ -26,10 +26,10 @@ public class CoinDeskConsumerApplication {
                     LocalDate.now().minusDays(30), LocalDate.now());
             print(currentPrice);
             print(historicalPrice);
-        } catch (IOException e) {
-            System.err.println("Unexpected error, contact the support and provide the message: " + e.getMessage());
         } catch (CurrencyNotFoundException | DateException e) {
             System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Unexpected error, contact the support and provide the message: " + e.getMessage());
         }
     }
 
