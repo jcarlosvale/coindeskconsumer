@@ -7,6 +7,10 @@ import lombok.ToString;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Domain Class representing the Historical Price
+ * The values are stored in a TreeSet, a sorted MAP, it makes more easy to retrieve the highest/lowest value
+ */
 @EqualsAndHashCode
 @ToString
 public class HistoricalPrice {

@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+/**
+ * Domain Class representing the Current Price in a Code, Value and Date of Update
+ */
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString

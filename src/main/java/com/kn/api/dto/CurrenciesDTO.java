@@ -7,6 +7,9 @@ import lombok.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents the currencies present in a DTO
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @NoArgsConstructor

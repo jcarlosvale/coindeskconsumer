@@ -3,23 +3,34 @@ package com.kn.api;
 import com.kn.api.client.CoinDeskClient;
 import com.kn.api.domain.CurrentPrice;
 import com.kn.api.domain.HistoricalPrice;
+import com.kn.api.exception.CurrencyNotFoundException;
+import com.kn.api.exception.DateException;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Main class to interact with User
+ */
 public class CoinDeskConsumerApplication {
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) {
         CoinDeskClient coinDeskClient = new CoinDeskClient();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Insert the currency ISO 4217 code (USD, EUR, GBP...): ");
         String currencyCode = scanner.nextLine().trim().toUpperCase();
-        CurrentPrice currentPrice = coinDeskClient.getCurrentPriceByCurrencyCode(currencyCode);
-        HistoricalPrice historicalPrice = coinDeskClient.getHistoricalPriceByCurrencyCode(currencyCode,
-                LocalDate.now().minusDays(30), LocalDate.now());
-        print(currentPrice);
-        print(historicalPrice);
+        try {
+            CurrentPrice currentPrice = coinDeskClient.getCurrentPriceByCurrencyCode(currencyCode);
+            HistoricalPrice historicalPrice = coinDeskClient.getHistoricalPriceByCurrencyCode(currencyCode,
+                    LocalDate.now().minusDays(30), LocalDate.now());
+            print(currentPrice);
+            print(historicalPrice);
+        } catch (IOException e) {
+            System.err.println("Unexpected error, contact the support and provide the message: " + e.getMessage());
+        } catch (CurrencyNotFoundException | DateException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void print(HistoricalPrice historicalPrice) {

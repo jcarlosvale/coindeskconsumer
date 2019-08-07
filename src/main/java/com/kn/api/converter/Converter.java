@@ -7,10 +7,13 @@ import com.kn.api.dto.CurrentPriceDTO;
 import com.kn.api.dto.HistoricalCurrencyDTO;
 import lombok.NonNull;
 
+/**
+ * Converter used to convert DTO --> Domain Object
+ */
 public class Converter {
 
-    public CurrentPrice convert(@NonNull CurrentPriceDTO currentPriceDTO, @NonNull String currencyCode) {
-        String lastUpdate = currentPriceDTO.getTimeObject().getUpdated();
+    public CurrentPrice convert(@NonNull String currencyCode, @NonNull CurrentPriceDTO currentPriceDTO) {
+        String lastUpdate = currentPriceDTO.getTimeDTO().getUpdated();
         CurrencyDTO currencyDTO = currentPriceDTO.getCurrenciesDTO().getCurrencies().get(currencyCode);
         return (null == currencyCode) ?
                 null :
