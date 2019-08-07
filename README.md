@@ -22,9 +22,7 @@ To generate JAR:
 
 To run:
 
-    ```java
     java -jar target/CoinDeskConsumer-0.0.1.jar
-    ```
     
 To run tests:
 
